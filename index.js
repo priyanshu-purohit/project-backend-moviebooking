@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const env = require('dotenv');
 const mongoose = require('mongoose');
-const Movie = require('../models/movie.model');
+const Movie = require('./models/movie.model');
 
 env.config();
 const app = express();//express app object
