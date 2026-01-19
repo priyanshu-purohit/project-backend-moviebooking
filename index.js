@@ -2,13 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const env = require('dotenv');
 const mongoose = require('mongoose');
-const Movie = require('./models/movie.model');
+
+
+const MovieRoutes = require('./routes/movie.routes');
 
 env.config();
 const app = express();//express app object
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+MovieRoutes(app); // invoking movie routes
 
 app.get('/', (req, res) => {
     console.log('Hitting /home'); 
