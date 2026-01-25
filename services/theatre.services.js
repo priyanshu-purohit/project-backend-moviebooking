@@ -1,5 +1,10 @@
 const Theatre = require('../models/theatre.model');
 
+/**
+ * 
+ * @param data -> object containing details of the theatre to be created
+ * @returns -> object with the new theatre details
+ */
 const createTheatre = async (data) => {
     try{
         const response = await Theatre.create(data);
@@ -19,6 +24,11 @@ const createTheatre = async (data) => {
     }  
 }
 
+/**
+ * 
+ * @param id -> the unique id using which we can identify the theatre to be deleted
+ * @returns -> returns the deleted theatre object
+ */
 const deleteTheatre = async (id) => {
     try{
         const response = await Theatre.findByIdAndDelete(id);
@@ -31,13 +41,15 @@ const deleteTheatre = async (id) => {
         return response;
     }
     catch(error){
-        console.log("-----------------------------------------------------------");
         console.log("ERROR LOG", error);
-        console.log("-----------------------------------------------------------");
         throw error;
     }
 }
 
+/**
+ * 
+ * @param id -> he unique id using which we can identify the theatre to be fetched
+ */
 const getTheatre = async (id) => {
     try{
         const response = await Theatre.findById(id);
@@ -55,6 +67,7 @@ const getTheatre = async (id) => {
     }  
 }
 
+//need to be checked
 const getAllTheatres = async () => {
     try{
         const response = await Theatre.find({});
@@ -66,6 +79,7 @@ const getAllTheatres = async () => {
     }
 }
 
+//another function that is update theatre
 module.exports = {
     createTheatre,
     deleteTheatre,
