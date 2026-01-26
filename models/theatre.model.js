@@ -10,14 +10,18 @@ const theatreSchema = new mongoose.Schema({
     },
     description: String,
     city: {
-        type: String,
+        type: String, 
         required: true
     },
     pincode: {
         type: Number,
         required: true
     },
-    address: String
+    address: String,
+    movies: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Movie'
+    }
 }, {timestamps: true});
 
 const Theatre = mongoose.model('Theatre', theatreSchema);
