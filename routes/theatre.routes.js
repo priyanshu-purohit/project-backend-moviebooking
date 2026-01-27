@@ -1,14 +1,22 @@
-const theatreController = require('../controller/theatre.controller');
-const theatreMiddleware = require('../middlewares/theatre.middlewares');
+const theatreController = require("../controller/theatre.controller");
+const theatreMiddleware = require("../middlewares/theatre.middlewares");
 
 const routes = (app) => {
-    app.post('/mba/api/v1/theatre', theatreMiddleware.validateTheatreCreateRequest, theatreController.create);
+  app.post(
+    "/mba/api/v1/theatre",
+    theatreMiddleware.validateTheatreCreateRequest,
+    theatreController.create,
+  );
 
-    app.delete('/mba/api/v1/theatre/:id', theatreController.destroy);
+  app.delete("/mba/api/v1/theatre/:id", theatreController.destroy);
 
-    app.get('/mba/api/v1/theatre/:id', theatreController.getTheatre);
+  app.get("/mba/api/v1/theatre/:id", theatreController.getTheatre);
 
-    app.get('/mba/api/v1/theatre', theatreController.getTheatres);
-}
+  app.get("/mba/api/v1/theatre", theatreController.getTheatres);
+
+  //update route
+
+  app.patch("/mba/api/v1/theatre/:id/movies", theatreMiddleware.validateUpdateMovieRequest,  theatreController.updateMovies);
+};
 
 module.exports = routes;
