@@ -75,25 +75,27 @@ const getAllTheatres = async () => {
  */
 const updateMoviesInTheatres = async (theatreId, movieIds, insert) => {
     try{
+        let theatre;
         if(insert){
             //we need to add movies
-            await Theatre.updateOne(
+            theatre = await Theatre.findByIdAndUpdate(
                 {_id: theatreId},
                 {$addToSet: {
                     movies: {$each: movieIds}
-                }}
+                }},
+                {new: true}
             )
         }
         else{
             //we need to remove movies
-            await Theatre.updateOne(
+            theatre = await Theatre.findByIdAndUpdate(
                 {_id: theatreId},
                 {$pull: {
                     movies: {$in: movieIds}
-                }}
+                }},
+                {new: true}
             )
         }
-        const theatre = await Theatre.findById(theatreId);
         return await theatre.populate('movies');
     }
     catch(error){
