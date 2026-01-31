@@ -1,4 +1,5 @@
 const Theatre = require('../models/theatre.model');
+const mongoose = require('mongoose');
 
 /**
  * 
@@ -83,6 +84,9 @@ const getAllTheatres = async (data) => {
             //this checks whether name is present in query params or not
             query.name = data.name;
         }
+        if(data && data.movieId){
+            query.movies = {$all: [new mongoose.Types.ObjectId(data.movieId)]};
+        }
         if(data && data.limit){
             pagination.limit = data.limit;
         }
@@ -122,12 +126,12 @@ const updateTheatre = async (id, data) => {
     }
 }
 
-
-//another function that is update theatre
 module.exports = {
     createTheatre,
     deleteTheatre,
     getTheatre,
+    getAllTheatres,
+    updateTheatre
     getAllTheatres,
     updateTheatre
 }

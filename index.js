@@ -3,6 +3,11 @@ const bodyParser = require('body-parser');
 const env = require('dotenv');
 const mongoose = require('mongoose');
 
+<<<<<<< HEAD
+=======
+mongoose.set('debug', true);
+
+>>>>>>> Feature_2_THEATRE_CRUD_API
 const MovieRoutes = require('./routes/movie.routes');
 const theatreRoutes = require('./routes/theatre.routes');
 
