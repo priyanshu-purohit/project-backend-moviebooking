@@ -1,4 +1,5 @@
 const Theatre = require('../models/theatre.model');
+const mongoose = require('mongoose');
 
 const createTheatre = async (data) => {
     try{
@@ -70,6 +71,9 @@ const getAllTheatres = async (data) => {
         if(data && data.name){
             //this checks whether name is present in query params or not
             query.name = data.name;
+        }
+        if(data && data.movieId){
+            query.movies = {$all: [new mongoose.Types.ObjectId(data.movieId)]};
         }
         if(data && data.limit){
             pagination.limit = data.limit;
