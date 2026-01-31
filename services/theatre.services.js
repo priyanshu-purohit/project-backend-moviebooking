@@ -132,6 +132,4 @@ module.exports = {
     getTheatre,
     getAllTheatres,
     updateTheatre
-    getAllTheatres,
-    updateTheatre
 }
