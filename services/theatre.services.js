@@ -67,11 +67,31 @@ const getTheatre = async (id) => {
     }  
 }
 
-//need to be checked
-const getAllTheatres = async () => {
+const getAllTheatres = async (data) => {
     try{
-        const response = await Theatre.find({});
-        return response;
+        let query = {};
+        let pagination = {};
+        if(data && data.city){
+            //this checks whether city is present in query params or not
+            query.city = data.city;
+        }
+        if(data && data.pincode){
+            //this checks whether pincode is present in query params or not
+            query.pincode = data.pincode;
+        }
+        if(data && data.name){
+            //this checks whether name is present in query params or not
+            query.name = data.name;
+        }
+        if(data && data.limit){
+            pagination.limit = data.limit;
+        }
+        if(data && data.skip){
+            let perPage = (data.limit) ? Number(data.limit) : 5;
+            pagination.skip = data.skip*perPage;
+        }
+        const response = await Theatre.find(query, {}, pagination);
+        return response; 
     }
     catch(error){
         console.log(error);
@@ -79,10 +99,35 @@ const getAllTheatres = async () => {
     }
 }
 
+const updateTheatre = async (id, data) => {
+    try{
+        const response = await Theatre.findByIdAndUpdate(id, data, {new: true, runValidators: true});
+        if(!response){
+            return {
+                err: "No theatre found for the given id",
+                code: 404
+            }
+        }
+        return response;
+     }
+    catch(error){
+        if(error.name === 'ValidationError'){
+            let err = {};
+            Object.keys(error.errors).forEaach((key) => {
+                err[key] = error.errors[key].message;
+            });
+            return {err: err, code: 422};
+        }
+        throw error;
+    }
+}
+
+
 //another function that is update theatre
 module.exports = {
     createTheatre,
     deleteTheatre,
     getTheatre,
-    getAllTheatres
+    getAllTheatres,
+    updateTheatre
 }
