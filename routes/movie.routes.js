@@ -3,12 +3,17 @@ const movieMiddleware = require("../middlewares/movie.middlewares");
 
 const routes = (app) => {
   //routes function takes express app object as parameter
+
+  //CREATE
   app.post("/mba/api/v1/movies", movieMiddleware.validateMovieCreateRequest, movieController.createMovie);
 
+  //DELETE
   app.delete("/mba/api/v1/movies/:movieId", movieController.deleteMovie);
 
+  //READ
   app.get("/mba/api/v1/movies/:id", movieController.getMovie);
 
+  //READ
   app.put("/mba/api/v1/movies/:id", movieController.updateMovie);
 
   app.patch("/mba/api/v1/movies/:id", movieController.updateMovie);

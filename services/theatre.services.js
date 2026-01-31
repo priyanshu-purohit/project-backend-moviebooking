@@ -1,5 +1,11 @@
 const Theatre = require('../models/theatre.model');
+const mongoose = require('mongoose');
 
+/**
+ * 
+ * @param data -> object containing details of the theatre to be created
+ * @returns -> object with the new theatre details
+ */
 const createTheatre = async (data) => {
     try{
         const response = await Theatre.create(data);
@@ -19,6 +25,11 @@ const createTheatre = async (data) => {
     }  
 }
 
+/**
+ * 
+ * @param id -> the unique id using which we can identify the theatre to be deleted
+ * @returns -> returns the deleted theatre object
+ */
 const deleteTheatre = async (id) => {
     try{
         const response = await Theatre.findByIdAndDelete(id);
@@ -31,13 +42,15 @@ const deleteTheatre = async (id) => {
         return response;
     }
     catch(error){
-        console.log("-----------------------------------------------------------");
         console.log("ERROR LOG", error);
-        console.log("-----------------------------------------------------------");
         throw error;
     }
 }
 
+/**
+ * 
+ * @param id -> he unique id using which we can identify the theatre to be fetched
+ */
 const getTheatre = async (id) => {
     try{
         const response = await Theatre.findById(id);
@@ -55,16 +68,64 @@ const getTheatre = async (id) => {
     }  
 }
 
-const getAllTheatres = async () => {
+const getAllTheatres = async (data) => {
     try{
-        const response = await Theatre.find({});
-        return response;
+        let query = {};
+        let pagination = {};
+        if(data && data.city){
+            //this checks whether city is present in query params or not
+            query.city = data.city;
+        }
+        if(data && data.pincode){
+            //this checks whether pincode is present in query params or not
+            query.pincode = data.pincode;
+        }
+        if(data && data.name){
+            //this checks whether name is present in query params or not
+            query.name = data.name;
+        }
+        if(data && data.movieId){
+            query.movies = {$all: [new mongoose.Types.ObjectId(data.movieId)]};
+        }
+        if(data && data.limit){
+            pagination.limit = data.limit;
+        }
+        if(data && data.skip){
+            let perPage = (data.limit) ? Number(data.limit) : 5;
+            pagination.skip = data.skip*perPage;
+        }
+        const response = await Theatre.find(query, {}, pagination);
+        return response; 
     }
     catch(error){
         console.log(error);
         throw error;
     }
 }
+
+const updateTheatre = async (id, data) => {
+    try{
+        const response = await Theatre.findByIdAndUpdate(id, data, {new: true, runValidators: true});
+        if(!response){
+            return {
+                err: "No theatre found for the given id",
+                code: 404
+            }
+        }
+        return response;
+     }
+    catch(error){
+        if(error.name === 'ValidationError'){
+            let err = {};
+            Object.keys(error.errors).forEaach((key) => {
+                err[key] = error.errors[key].message;
+            });
+            return {err: err, code: 422};
+        }
+        throw error;
+    }
+}
+
 
 /**
  * 
@@ -114,5 +175,6 @@ module.exports = {
     deleteTheatre,
     getTheatre,
     getAllTheatres,
+    updateTheatre,
     updateMoviesInTheatres
 }

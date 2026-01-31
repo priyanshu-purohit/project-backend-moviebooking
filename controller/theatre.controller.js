@@ -38,7 +38,7 @@ const destroy = async (req, res) => {
 
 const getTheatre = async (req, res) => {
     try{
-        const response = await theatreServices.getTheatre(req.params.id);
+        const response = await theatreServices.getTheatre(req.params);
         if(response.err){
             errorResponseBody.err = response.err;
             return res.status(response.code).json(errorResponseBody);
@@ -54,7 +54,7 @@ const getTheatre = async (req, res) => {
 
 const getTheatres = async (req, res) => {
     try{
-        const response = await theatreServices.getAllTheatres();
+        const response = await theatreServices.getAllTheatres(req.query);
         successResponseBody.data = response;
         successResponseBody.message = "Successfully fetched all the theatres";
         return res.status(200).json(successResponseBody); 
