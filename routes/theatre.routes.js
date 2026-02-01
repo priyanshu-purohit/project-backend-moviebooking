@@ -15,9 +15,11 @@ const routes = (app) => {
     //READ
     app.get('/mba/api/v1/theatre', theatreController.getTheatres);
 
-    app.patch('/mba/api/v1/theatre/:id', theatreController.update);
+    app.patch('/mba/api/v1/theatre/:id', theatreController.updateMovies);
 
-    app.put('/mba/api/v1/theatre/:id', theatreController.update);
+    app.put('/mba/api/v1/theatre/:id', theatreController.updateMovies);
+
+    app.get('/mba/api/v1/theatre/:id/movies', theatreController.getMovies);
 }
 
 module.exports = routes;
