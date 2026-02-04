@@ -14,7 +14,7 @@ const createMovie = async (data) => {
         if(error.name === 'ValidationError'){
             let err = {};
             Object.keys(error.errors).forEach((key) => {
-                err[key] = error.errors[key].message;
+                err[key] = error.errors[key].message; 
             });
             console.log("THIS IS THE ERROR LOG",err);
             return {err: err, code: 422};
