@@ -4,11 +4,12 @@ const { successResponseBody, errorResponseBody } = require('../utils/responsebod
 
 const signup = async (req, res) => {
     try{
-        const response = await userService.createUser(req.body);
+        const response = await userService.createUser(req.body); 
         successResponseBody.data = response;
         successResponseBody.message = 'Successfully registered a user';
         return res.status(201).json(successResponseBody);
     }
+
     catch(error){
         console.log(error);
         if(error.err){
