@@ -48,8 +48,9 @@ const getUserById = async (id) => {
     }
 }
 
+
 module.exports = {
     createUser,
     getUserByemail,
-    getUserById 
+    getUserById
 }
