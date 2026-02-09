@@ -21,12 +21,20 @@ const userSchema = new mongoose.Schema({
     },
     userRole: {
         type: String,
-        requires: true,
+        required: true,
+        enum: {
+            values: ["CUSTOMER", "ADMIN", "SELLER"],
+            message: '{VALUE} is not a valid role'
+        },
         default: "CUSTOMER"
     },
     userStatus: {
         type: String,
         required: true,
+        enum: {
+            values: ["APPROVED", "PENDING", "BLOCKED"],
+            message: '{VALUE} is not a valid status'
+        },
         default: "APPROVED"
     }
 }, {timestamps: true});
