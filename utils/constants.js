@@ -1,0 +1,14 @@
+
+const USER_ROLE = {
+  CUSTOMER: 'CUSTOMER',
+  ADMIN: 'ADMIN',
+  SELLER: 'SELLER'
+};
+
+const USER_STATUS = {
+  APPROVED: 'APPROVED',
+  PENDING: 'PENDING',
+  BLOCKED: 'BLOCKED'
+};
+
+module.exports = { USER_ROLE, USER_STATUS };
