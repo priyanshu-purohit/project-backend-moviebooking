@@ -115,7 +115,7 @@ const isAdmin = async (req, res, next) => {
 
 const isClient = async (req, res, next) => {
     const user = await userService.getUserById(req.user);
-    if(user.userRole != USER_ROLE.CUSTOMER){
+    if(user.userRole != USER_ROLE.customer){
         errorResponseBody.err = "User is not a client, cannot proceed with the request";
         return res.status(401).json(errorResponseBody);
     }
@@ -124,7 +124,7 @@ const isClient = async (req, res, next) => {
 
 const isAdminOrClient = async (req, res, next) => {
     const user = await userService.getUserById(req.user);
-    if(user.userRole != USER_ROLE.CUSTOMER && user.userRole != USER_ROLE.ADMIN){
+    if(user.userRole != USER_ROLE.customer && user.userRole != USER_ROLE.admin){
         errorResponseBody.err = "User is neither a client not an admin, cannot proceed with the request";
         return res.status(401).json(errorResponseBody);
     }

@@ -25,19 +25,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: {
-            values: [USER_ROLE.CUSTOMER, USER_ROLE.ADMIN, USER_ROLE.SELLER],
+            values: [USER_ROLE.customer, USER_ROLE.admin, USER_ROLE.client],
             message: '{VALUE} is not a valid role'
         },
-        default: USER_ROLE.CUSTOMER
+        default: USER_ROLE.customer
     },
     userStatus: {
         type: String,
         required: true,
         enum: {
-            values: [USER_STATUS.APPROVED, USER_STATUS.PENDING, USER_STATUS.BLOCKED],
+            values: [USER_STATUS.approved, USER_STATUS.pending, USER_STATUS.rejected],
             message: '{VALUE} is not a valid status'
         },
-        default: USER_STATUS.APPROVED
+        default: USER_STATUS.approved
     }
 }, {timestamps: true});
 
