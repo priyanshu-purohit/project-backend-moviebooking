@@ -104,11 +104,18 @@ const getAllTheatres = async (data) => {
     }
 }
 
+/**
+ * 
+ * @param id -> the unique id to identify the theatre to be updated
+ * @param data -> data object to be used to upudate the theatre
+ * @returns -> it returns the new updated theatre object
+ */
+
 const updateTheatre = async (id, data) => {
     try{
         const response = await Theatre.findByIdAndUpdate(id, data, {new: true, runValidators: true});
         if(!response){
-            return {
+            throw {
                 err: "No theatre found for the given id",
                 code: STATUS_CODES.NOT_FOUND
             }

@@ -20,14 +20,36 @@ const routes = (app) => {
     );
 
     //READ
-    app.get('/mba/api/v1/theatre/:id', theatreController.getTheatre);
+    app.get('/mba/api/v1/theatre/:id',
+        theatreController.getTheatre
+    );
 
     //READ
     app.get('/mba/api/v1/theatre', theatreController.getTheatres);
 
-    app.patch('/mba/api/v1/theatre/:id', theatreController.updateMovies);
+    app. patch('/mba/api/v1/theatre/:id',
+        authMiddleware.isAuthenticated,
+        authMiddleware.isAdminOrClient,
+        theatreController.update
+    );
 
-    app.put('/mba/api/v1/theatre/:id', theatreController.updateMovies);
+    app.put('/mba/api/v1/theatre/:id',
+        authMiddleware.isAuthenticated,
+        authMiddleware.isAdminOrClient,
+        theatreController.update
+    );
+
+    app. patch('/mba/api/v1/theatre/:id',
+        authMiddleware.isAuthenticated,
+        authMiddleware.isAdminOrClient,
+        theatreController.updateMovies
+    );
+
+    app.put('/mba/api/v1/theatre/:id',
+        authMiddleware.isAuthenticated,
+        authMiddleware.isAdminOrClient,
+        theatreController.updateMovies
+    );
 
     app.get('/mba/api/v1/theatre/:id/movies', theatreController.getMovies);
 
