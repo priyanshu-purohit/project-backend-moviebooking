@@ -13,7 +13,11 @@ const routes = (app) => {
     );
 
     //DELETE
-    app.delete('/mba/api/v1/theatre/:id', authMiddleware.isAuthenticated,  theatreController.destroy);
+    app.delete('/mba/api/v1/theatre/:id',
+        authMiddleware.isAuthenticated,
+        authMiddleware.isAdminOrClient, 
+        theatreController.destroy
+    );
 
     //READ
     app.get('/mba/api/v1/theatre/:id', theatreController.getTheatre);
