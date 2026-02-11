@@ -117,5 +117,5 @@ module.exports = {
     createMovie,
     deleteMovie,
     updateMovie,
-    fetchMovies
+    fetchMovies 
 }

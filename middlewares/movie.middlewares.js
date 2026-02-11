@@ -48,7 +48,7 @@ const validateMovieCreateRequest = async(req, res, next) => {
         badRequestResponse.err = "The release date of the movie is not present in the request";
         return res.status(400).json(badRequestResponse)
     }
-
+ 
     // validate director
     if(!req.body.director){
         badRequestResponse.err = "The director of the movie is not present in the request";
