@@ -1,4 +1,5 @@
 const Movie = require('../models/movie.model');
+const { STATUS_CODES } = require('../utils/constants');
 
 /**
  * 
@@ -17,7 +18,7 @@ const createMovie = async (data) => {
                 err[key] = error.errors[key].message; 
             });
             console.log("THIS IS THE ERROR LOG",err);
-            return {err: err, code: 422};
+            throw {err: err, code: STATUS_CODES.UNPROCESSABLE_ENTITY};
         }
         else{
             throw error;
