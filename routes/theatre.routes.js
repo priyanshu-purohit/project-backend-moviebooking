@@ -5,7 +5,12 @@ const authMiddleware = require("../middlewares/auth.middlewares");
 const routes = (app) => {
 
     //CREATE
-    app.post('/mba/api/v1/theatre', theatreMiddleware.validateTheatreCreateRequest, theatreController.create);
+    app.post('/mba/api/v1/theatre',
+        authMiddleware.isAuthenticated,
+        authMiddleware.isClient,
+        theatreMiddleware.validateTheatreCreateRequest,
+        theatreController.create
+    );
 
     //DELETE
     app.delete('/mba/api/v1/theatre/:id', authMiddleware.isAuthenticated,  theatreController.destroy);
