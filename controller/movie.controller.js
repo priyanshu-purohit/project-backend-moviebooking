@@ -67,7 +67,6 @@ const updateMovie = async (req, res) => {
     catch(error){
         if(error.err){
             errorResponseBody.err = error.err;
-            errorResponseBody.message = "The updates that we are trying to apply doesn't validate the schema";
             return res.status(error.code).json(errorResponseBody);
         }
         errorResponseBody.err = error;

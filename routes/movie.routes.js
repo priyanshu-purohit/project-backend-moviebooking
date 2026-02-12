@@ -21,13 +21,25 @@ const routes = (app) => {
   );
 
   //READ
-  app.get("/mba/api/v1/movies/:id", movieController.getMovie);
+  app.get("/mba/api/v1/movies/:id",
+    movieController.getMovie
+  );
 
   //READ
-  app.put("/mba/api/v1/movies/:id", movieController.updateMovie);
+  app.put("/mba/api/v1/movies/:id",
+    authMiddleware.isAuthenticated,
+    authMiddleware.isAdminOrClient,
+    movieController.updateMovie
+  );
 
-  app.patch("/mba/api/v1/movies/:id", movieController.updateMovie);
+  //UPDATE
+  app.patch("/mba/api/v1/movies/:id",
+    authMiddleware.isAuthenticated,
+    authMiddleware.isAdminOrClient,
+    movieController.updateMovie
+  );
  
+  //READ
   app.get("/mba/api/v1/movies", movieController.getMovies);
 };
 
