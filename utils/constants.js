@@ -11,6 +11,12 @@ const USER_STATUS = {
   rejeceted: 'REJECTED' 
 }; 
 
+const BOOKING_STATUS = {
+  cancelled: "CANCELLED",
+  successfull: "SUCCESSFULL",
+  processing: "IN_PROCESS"
+};
+
 const STATUS_CODES = {
   OK: 200,
   INTERNAL_SERVER_ERROR: 500,
@@ -22,4 +28,9 @@ const STATUS_CODES = {
   UNPROCESSABLE_ENTITY: 422
 }
 
-module.exports = { USER_ROLE, USER_STATUS, STATUS_CODES };
+module.exports = {
+  USER_ROLE,
+  USER_STATUS,
+  STATUS_CODES,
+  BOOKING_STATUS
+};
