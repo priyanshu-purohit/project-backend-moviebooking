@@ -25,7 +25,9 @@ const routes = (app) => {
     );
 
     //READ
-    app.get('/mba/api/v1/theatre', theatreController.getTheatres);
+    app.get('/mba/api/v1/theatre',
+        theatreController.getTheatres
+    );
 
     app. patch('/mba/api/v1/theatre/:id',
         authMiddleware.isAuthenticated,
@@ -43,7 +45,7 @@ const routes = (app) => {
         authMiddleware.isAuthenticated,
         authMiddleware.isAdminOrClient,
         theatreController.updateMovies
-    );
+    ); 
 
     app.put('/mba/api/v1/theatre/:id',
         authMiddleware.isAuthenticated,
@@ -51,9 +53,13 @@ const routes = (app) => {
         theatreController.updateMovies
     );
 
-    app.get('/mba/api/v1/theatre/:id/movies', theatreController.getMovies);
+    app.get('/mba/api/v1/theatre/:id/movies',
+        theatreController.getMovies
+    );
 
-    app.get('/mba/api/v1/theatre/:theatreId/movies/:movieId', theatreController.checkMovie);
+    app.get('/mba/api/v1/theatre/:theatreId/movies/:movieId',
+        theatreController.checkMovie
+    );
 }
 
 module.exports = routes;
