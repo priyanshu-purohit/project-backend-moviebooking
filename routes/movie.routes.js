@@ -14,7 +14,11 @@ const routes = (app) => {
   );
 
   //DELETE
-  app.delete("/mba/api/v1/movies/:movieId", movieController.deleteMovie);
+  app.delete("/mba/api/v1/movies/:movieId",
+    authMiddleware.isAuthenticated,
+    authMiddleware.isAdminOrClient,
+    movieController.deleteMovie
+  );
 
   //READ
   app.get("/mba/api/v1/movies/:id", movieController.getMovie);
