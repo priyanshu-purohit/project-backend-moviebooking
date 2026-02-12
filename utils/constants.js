@@ -17,6 +17,12 @@ const BOOKING_STATUS = {
   processing: "IN_PROCESS"
 };
 
+const PAYMENT_STATUS = {
+  failed: "FAILED",
+  success: "SUCCESS",
+  pending: "PENDING"
+};
+
 const STATUS_CODES = {
   OK: 200,
   INTERNAL_SERVER_ERROR: 500,
@@ -32,5 +38,6 @@ module.exports = {
   USER_ROLE,
   USER_STATUS,
   STATUS_CODES,
-  BOOKING_STATUS
+  BOOKING_STATUS,
+  PAYMENT_STATUS
 };
