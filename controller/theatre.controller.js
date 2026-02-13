@@ -65,7 +65,7 @@ const getTheatres = async (req, res) => {
     }
 }
 
-const update = async (req, req) => {
+const update = async (req, res) => {
     try{
         const response = await theatreServices.updateTheatre(req.params.id, req.body);
         successResponseBody.data = response;

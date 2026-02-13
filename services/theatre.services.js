@@ -192,7 +192,7 @@ const getMoviesInATheatre = async (id) => {
     }
     catch(error){
         console.log(error);
-        throw error;
+        throw error; 
     }
 
 }

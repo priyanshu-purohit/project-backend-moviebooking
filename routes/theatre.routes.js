@@ -48,7 +48,7 @@ const routes = (app) => {
     ); 
 
     app.put('/mba/api/v1/theatre/:id',
-        authMiddleware.isAuthenticated,
+        authMiddleware.isAuthenticated, 
         authMiddleware.isAdminOrClient,
         theatreController.updateMovies
     );
