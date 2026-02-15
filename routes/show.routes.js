@@ -1,20 +1,35 @@
 const showController = require('../controller/show.controller');
 const authMiddlewares = require('../middlewares/auth.middlewares');
-const shoMiddlewares = require('../middlewares/show.middlewares');
+const showMiddlewares = require('../middlewares/show.middlewares');
 
 const routes = (app) => {
     app.post(
         '/mba/api/v1/shows',
         authMiddlewares.isAuthenticated,
         authMiddlewares.isAdminOrClient,
-        shoMiddlewares.validateCreateShowRequest,
+        showMiddlewares.validateCreateShowRequest,
         showController.create
     );
 
     app.get(
         '/mba/api/v1/shows',
         showController.getShows
-    )
+    );
+
+    app.get(
+        '/mba/api/v1/shows/:id',
+        authMiddlewares.isAuthenticated,
+        authMiddlewares.isAdminOrClient,
+        showController.destroy
+    );
+
+    app.patch(
+        '/mba/api/v1/shows/:id',
+        authMiddlewares.isAuthenticated,
+        authMiddlewares.isAdminOrClient,
+        showMiddlewares.validateShowUpdateRequest,
+        showController.update
+    );
 }
 
 module.exports = routes;
