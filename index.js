@@ -11,6 +11,7 @@ const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const bookingRoutes = require('./routes/booking.routes');
 const showRoutes = require('./routes/show.routes');
+const paymentRoutes = require('./routes/payment.routes');
 
 env.config();
 const app = express();//express app object
@@ -24,6 +25,7 @@ authRoutes(app); // invoking auth routes
 userRoutes(app); //invoking user routes
 bookingRoutes(app); //invoking booking routes
 showRoutes(app); //invoking show routes
+paymentRoutes(app); //invoking payment routes
 
 
 
