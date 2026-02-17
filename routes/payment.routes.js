@@ -1,15 +1,26 @@
 const paymentController = require('../controller/payment.controller');
 const authMiddlewares = require('../middlewares/auth.middlewares');
-const paymentMiddlewares = require('../middlewares/payment.middewares');
+const paymentMiddlewares = require('../middlewares/payment.middlewares');
 
 const routes = (app) => {
 
-    //create payment route left
+    app.post(
+        '/mba/api/v1/payments',
+        authMiddlewares.isAuthenticated,
+        paymentMiddlewares.verifyPaymentCreateRequest,
+        paymentController.create
+    );
 
     app.get(
         '/mba/api/v1/payments/:id',
         authMiddlewares.isAuthenticated,
         paymentController.getPaymentDetailsById
+    );
+
+    app.get(
+        '/mba/api/v1/payments',
+        authMiddlewares.isAuthenticated,
+        paymentController.getAllPayments
     );
 };
 

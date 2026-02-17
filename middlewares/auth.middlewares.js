@@ -40,7 +40,7 @@ const validateSignupRequest = async (req, res, next) => {
  * @param res -> http response object
  * @param next -> next middleware
  */
-
+ 
 const validateSigninRequest = async (req, res, next) => {
     //validate user email presence
     if(!req.body.email) {
