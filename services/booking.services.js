@@ -1,12 +1,20 @@
 const Booking = require('../models/booking.model');
+const Show = require('../models/show.model');
 const { STATUS_CODES } = require('../utils/constants');
 
 const createBooking = async (data) => {
     try{
+        const show = await Show.findOne({
+            movieId: data.movieId,
+            theatreId: data.theatreId,
+            timing: data.timing
+        });
+        data.totalCost = data.noOfSeats * show.price;
         const response = await Booking.create(data);
+        show.save();
         return response;
     }
-    catch(error){
+    catch(error){ 
         console.log(error);
         if(error.name == 'ValidationError'){
             let err = {};
