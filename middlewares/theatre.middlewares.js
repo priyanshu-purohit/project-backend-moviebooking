@@ -9,15 +9,15 @@ const { errorResponseBody } = require('../utils/responsebody');
  */
 const validateTheatreCreateRequest = async (req, res, next) => {
     if(!req.body.name){
-        errorResponseBody.message = "The name of the theatre is not present in the request";
+        errorResponseBody.err = "The name of the theatre is not present in the request";
         return res.status(400).json(errorResponseBody);
     }
     if(!req.body.city){
-        errorResponseBody.message = "The city of the theatre is not present in the request";
+        errorResponseBody.err = "The city of the theatre is not present in the request";
         return res.status(400).json(errorResponseBody);
     }
     if(!req.body.pincode){
-        errorResponseBody.message = "The pincode of the theatre is not present in the request";
+        errorResponseBody.err = "The pincode of the theatre is not present in the request";
         return res.status(400).json(errorResponseBody);
     }
 
@@ -26,19 +26,19 @@ const validateTheatreCreateRequest = async (req, res, next) => {
 
 const validateUpdateMovieRequest = async (req, res, next) => {
     if(req.body.insert === undefined){
-        errorResponseBody.message = "The insert parameter is missing in the request";
+        errorResponseBody.err = "The insert parameter is missing in the request";
         return res.status(400).json(errorResponseBody);
     }
     if(!req.body.movies){
-        errorResponseBody.message = "No movies present in the request to be updated in theatre";
+        errorResponseBody.err = "No movies present in the request to be updated in theatre";
         return res.status(400).json(errorResponseBody);
     }
     if(!(req.body.movies instanceof Array)){
-        errorResponseBody.message = "Expected array of movies but found something else";
+        errorResponseBody.err = "Expected array of movies but found something else";
         return res.status(400).json(errorResponseBody);
     }
     if(req.body.movies.length == 0){
-        errorResponseBody.message = "No moives present in the array provided";
+        errorResponseBody.err = "No moives present in the array provided";
         return res.status(400).json(errorResponseBody);
     }
 
