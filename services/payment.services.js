@@ -1,4 +1,4 @@
-const Payment = require('../models/payment.model');
+ const Payment = require('../models/payment.model');
 const Booking = require('../models/booking.model');
 const User = require('../models/user.model');
 const Show = require('../models/show.model');

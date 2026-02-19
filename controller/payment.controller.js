@@ -7,7 +7,7 @@ const Theatre = require('../models/theatre.model');
 const sendMail = require('../services/email.services');
 
  const create = async (req, res) => {
-    try{
+    try{ 
         const response = await paymentService.createPayment(req.body);
         if(response.status == BOOKING_STATUS.expired){
             errorResponseBody.err = 'The payment took more than 5 minutes to get processed, hence your booking got expired, please try again';
@@ -19,7 +19,6 @@ const sendMail = require('../services/email.services');
             errorResponseBody.data = response;
             return res.status(STATUS_CODES.PAYMENT_REQUIRED).json(errorResponseBody);
         }
-        //newly added
         const user = await User.findById(response.userId);
         const movie = await Movie.findById(response.movieId);
         const theatre = await Theatre.findById(response.theatreId);

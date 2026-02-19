@@ -10,4 +10,4 @@ const sendMail = async (subject, id, content) => {
     });
 }
 
-module.exports = sendMail;
+module.exports = sendMail; 
