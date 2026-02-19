@@ -17,7 +17,7 @@ env.config();
 const app = express();//express app object
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 MovieRoutes(app); // invoking movie routes
 theatreRoutes(app); // invoking theatre routes
@@ -34,7 +34,13 @@ app.listen(process.env.PORT, async () => {
     console.log(`listening on the PORT ${process.env.PORT} !!`);
 
     try{
-        await mongoose.connect(process.env.DB_URL);//connects to the mongo server
+        //use prod db
+        if(process.env.NODE_ENV == 'production'){
+            await mongoose.connect(process.env.PROD_DB_URL);//connects to the mongo server
+        }
+        else{
+            await mongoose.connect(process.env.DB_URL);//connects to the mongo server
+        }
         console.log("Successfully connected to mongo");
     }
     catch(err){
