@@ -5,10 +5,6 @@ const sendMail = require('../services/email.services');
 
 const create = async (req, res) => {
     try{
-        /*
-        need to add owner
-        const response = await theatreServices.createTheatre({...req.body, owner: req.body.owner});
-        */
         const response = await theatreServices.createTheatre({...req.body, owner: req.user});
         successResponseBody.message = 'Successfully created the theatre';
         sendMail(

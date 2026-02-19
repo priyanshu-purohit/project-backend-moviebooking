@@ -18,7 +18,7 @@ const sendMail = require('../services/email.services');
             errorResponseBody.err = 'The payement failed due to some reason, booking was not successfull, please try again';
             errorResponseBody.data = response;
             return res.status(STATUS_CODES.PAYMENT_REQUIRED).json(errorResponseBody);
-        }
+        } 
         const user = await User.findById(response.userId);
         const movie = await Movie.findById(response.movieId);
         const theatre = await Theatre.findById(response.theatreId);
