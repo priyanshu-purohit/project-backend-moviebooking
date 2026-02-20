@@ -27,8 +27,6 @@ bookingRoutes(app); //invoking booking routes
 showRoutes(app); //invoking show routes
 paymentRoutes(app); //invoking payment routes
 
-
-
 app.listen(process.env.PORT, async () => {
     //this callback gets executed once we successfully start the server on the given port
     console.log(`listening on the PORT ${process.env.PORT} !!`);
@@ -36,6 +34,7 @@ app.listen(process.env.PORT, async () => {
     try{
         //use prod db
         if(process.env.NODE_ENV == 'production'){
+            console.log(process.env.PROD_DB_URL)
             await mongoose.connect(process.env.PROD_DB_URL);//connects to the mongo server
         }
         else{
