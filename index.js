@@ -27,6 +27,11 @@ bookingRoutes(app); //invoking booking routes
 showRoutes(app); //invoking show routes
 paymentRoutes(app); //invoking payment routes
 
+//need home page for testing deployment
+// app.get('/', (req, res) => {
+//     res.send('Home');
+// })
+
 app.listen(process.env.PORT, async () => {
     //this callback gets executed once we successfully start the server on the given port
     console.log(`listening on the PORT ${process.env.PORT} !!`);
